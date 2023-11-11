@@ -23,7 +23,8 @@ const petSchema = new Schema({
     delivery: {type: Boolean, required: true}, 
     age: {type: String, enum: ['baby', 'young', 'old'], required: true},
     adopted: {type: Boolean, required: true, default: "false"},
-    adoptiveParent: {type: String}
+    adoptiveParent: {type: String},
+    images: {type: [String]}
 },{
     
     collection: "pet"
