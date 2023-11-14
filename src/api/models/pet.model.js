@@ -6,7 +6,7 @@ const petSchema = new Schema({
     name: {type: String, required: true},
     city: {type: String, required: true, enum: ['Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Bilbao', 'Coruña']},
     species: {type: String, required: true, enum: ['Dog', 'Cat', 'Rabbit', 'Guinea Pig', 'Small mammal', 'Fish', 'Reptile', 'Amphibian', 'Insects', 'Bird']},
-    birtday: {type: String, required: true},
+    birthday: {type: String, required: true},
     sex: {type: String, required: true, enum: ['male', 'female']},
     size: {type: String, required: true, enum: ['small', 'medium', 'big']},
     personality: {type: [String], required: true},
@@ -22,9 +22,9 @@ const petSchema = new Schema({
     adoptionFee: {type: Number, required: true},
     delivery: {type: Boolean, required: true}, 
     age: {type: String, enum: ['baby', 'young', 'old'], required: true},
-    adopted: {type: Boolean, required: true, default: "false"},
+    adopted: {type: Boolean, required: true, default: false},
     adoptiveParent: {type: String},
-    images: {type: [String]}
+    image: {type: String}
 },{
     
     collection: "pet"

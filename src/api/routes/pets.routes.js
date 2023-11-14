@@ -4,9 +4,9 @@ const {getByID, registerPet, allPets, updatePet } = require('../controllers/pets
 const router = express.Router();
 const upload = require('../../middleware/upload.file')
 
-router.post('/register', upload.single('images'), registerPet);
+router.post('/register', upload.single('image'), registerPet);
 router.get('/', allPets);
 router.get('/:id', getByID)
-router.put('/updatePet/:id', upload.single('images'), updatePet)
+router.put('/updatePet/:id', upload.single('image'), updatePet)
 
 module.exports = router;

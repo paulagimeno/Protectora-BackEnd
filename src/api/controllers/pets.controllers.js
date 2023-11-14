@@ -2,16 +2,17 @@ const Pet = require("../models/pet.model");
 
 const registerPet = async (req, res)=> {
     try {
-        const petBody = new Pet(req.body)
-
+        const body = req.body
+        const pet = new Pet(body)
         if(req.file && req.file.path){
-            petBody.images = req.file.path;
+            pet.image = req.file.path;
         }
 
-        const createdpet = await petBody.save();
-        return res.json({ success: true, message: "Agregado con exito", data: createdpet})
+        const createdpet = await pet.save();
+        return res.status(201).json(createdpet)
     } catch (error) {
-
+        console.error(error);
+        return res.status(500).json('there is big mistake');
     }
 };
 
@@ -20,6 +21,7 @@ const allPets = async (req, res) => {
         const allPets = await Pet.find();
         return res.status(200).json(allPets);
     } catch (error) {
+        console.error(error);
         return res.status(500).json(error);
     }
 };
@@ -30,6 +32,7 @@ const getByID = async (req, res) => {
         const idPet = await Pet.findById(id);
         return res.status(200).json(idPet);
     } catch (error) {
+        console.error(error);
         return res.status(500).json(error);
     }
 };
@@ -41,7 +44,7 @@ const updatePet = async (req, res) => {
         petBody._id = id;
 
         if(req.file && req.file.path){
-            petBody.images = req.file.path;
+            petBody.image = req.file.path;
         }
 
         const updatePet = await Pet.findByIdAndUpdate(id, petBody, {new: true});
