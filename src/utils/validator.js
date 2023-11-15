@@ -1,4 +1,5 @@
 const User = require("../api/models/user.model");
+const Protectora = require('../api/models/protectora.model');
 
 const validatePassword = (pass) => {
 
@@ -15,4 +16,16 @@ const validateEmailDB = async (emailUser) => {
     }
 
 }
-module.exports = { validateEmailDB, validatePassword }
+
+const validateProtectoraEmailDB = async (emailProtectora) => {
+    try {
+        const validateEmail = await Protectora.findOne({ email: emailProtectora })
+        return validateEmail;
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
+
+module.exports = { validateEmailDB, validatePassword, validateProtectoraEmailDB}
