@@ -3,6 +3,7 @@ const { connectDb } = require('./src/utils/database');
 const routeUsers = require('./src/api/routes/users.routes');
 const routePets = require('./src/api/routes/pets.routes');
 const routeProtectoras = require('./src/api/routes/protectoras.routes');
+const routeForms = require('./src/api/routes/forms.routes');
 const env = require('dotenv');
 env.config();
 const cors = require('cors');
@@ -21,8 +22,9 @@ cloudinary.config({
 });
 
 app.use('/users', routeUsers);
-app.use('/pets', routePets)
-app.use('/protectoras', routeProtectoras)
+app.use('/pets', routePets);
+app.use('/protectoras', routeProtectoras);
+app.use('/forms', routeForms);
 
 const PORT = 5055;
 app.listen(PORT, () => {

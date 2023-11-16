@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const petSchema = new Schema({
     name: {type: String, required: true},
-    city: {type: String, required: true, enum: ['Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Bilbao', 'Coruña']},
+    city: {type: String, required: true, enum: ['Madrid', 'Barcelona', 'Valencia', 'Coruña']},
     species: {type: String, required: true, enum: ['Dog', 'Cat', 'Rabbit', 'Guinea Pig', 'Small mammal', 'Fish', 'Reptile', 'Amphibian', 'Insects', 'Bird']},
     birthday: {type: String, required: true},
     sex: {type: String, required: true, enum: ['male', 'female']},

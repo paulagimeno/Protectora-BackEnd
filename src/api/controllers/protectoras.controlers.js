@@ -2,6 +2,13 @@ const Protectora = require('../models/protectora.model');
 const { validateProtectoraEmailDB, validatePassword } = require("../../utils/validator");
 const bycrypt = require("bcrypt");
 const { generateToken } = require("../../utils/jwt");
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET,
+});
 
 const registerProtectora = async (req, res) => {
     try {
@@ -49,6 +56,17 @@ const profileProtectora = async (req, res) => {
     }
 }
 
+const getProtectoraByID = async (req, res) => {
+    try {
+        const { id } = req.params
+        const idProtectora = await Protectora.findById(id);
+        return res.status(200).json(idProtectora);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json(error);
+    }
+};
+
 const getByEmail = async (req, res) => {
     try {
         const { email } = req.params
@@ -75,7 +93,7 @@ const updateProtectora = async (req, res) => {
         protectoraBody._id = id;
 
         if(req.file && req.file.path){
-            protectoraBody.avatarImage = req.file.path;
+            protectoraBody.image = req.file.path;
         }
 
         const updateProtectora = await Protectora.findByIdAndUpdate(id, protectoraBody, {new: true});
@@ -93,4 +111,4 @@ const updateProtectora = async (req, res) => {
 
 
 
-module.exports = { getByEmail, registerProtectora, loginProtectora, profileProtectora, allProtectoras, updateProtectora }
+module.exports = { getProtectoraByID, getByEmail, registerProtectora, loginProtectora, profileProtectora, allProtectoras, updateProtectora }
