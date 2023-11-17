@@ -20,15 +20,14 @@ const formSchema = new Schema({
     renting: {type: Boolean, required: true},
     petsAllowed: {type: Boolean, required: true},
     movingSoon: {type: Boolean, required: true},
-    Garden: {type: Boolean, required: true},
+    garden: {type: Boolean, required: true},
     morePeople: {type: Boolean, required: true},
     welcoming: {type: Boolean, required: true},
     visit: {type: Boolean, required: true},
-    address: {
-        street: { type: String},
-        number: {type: Number},
-         door: { type: String }
-    }
+    address: { type: String},
+    status: {type:String, enum: ['inProcess', 'denied', 'accepted'], default: 'inProcess'}
+}, {
+    collection: "form"
 });
 
 const Form = mongoose.model('form', formSchema);
