@@ -11,7 +11,7 @@ router.post('/login', loginProtectora);
 router.get('/profile', [isAuth], profileProtectora);
 router.get('/', allProtectoras);
 router.get('/:id', getProtectoraByID);
-router.get('/:email', getByEmail);
+router.get('/getByEmail/:email', getByEmail);
 router.put('/updateProtectora/:id', upload.single('image'), updateProtectora);
 
 module.exports = router; 
