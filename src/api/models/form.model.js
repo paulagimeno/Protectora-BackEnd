@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const formSchema = new Schema({
     fullName: {type: String, required: true},
     city: {type: String, required: true},
+    username: {type: String}, 
     petName: {type: String, required: true},
     phoneNumber: {type: Number, required: true},
     email: {type: String, required: true},

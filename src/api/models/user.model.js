@@ -12,12 +12,6 @@ const userSchema = new Schema({
     notifications: {type: String},
     name: {type: String, required:true}, 
     surname: {type: String, required:true}, 
-    adoptionStatus: [
-        {
-            pet: { type: String }, 
-            status: { type: String, enum: ["accepted", "denied", "processing"] }
-        }
-    ]
 },{
     
     collection: "user"

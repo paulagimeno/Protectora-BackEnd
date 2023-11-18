@@ -47,6 +47,17 @@ const getByID = async (req, res) => {
     }
 };
 
+const getByName = async (req, res) => {
+    try {
+        const { name } = req.params
+        const namePet = await Pet.find({name: name})
+        return res.status(200).json(namePet);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json(error);
+    }
+}; 
+
 const updatePet = async (req, res) => {
     try{
         const {id} = req.params;
@@ -70,4 +81,4 @@ const updatePet = async (req, res) => {
 
 }
 
-module.exports = { updatePet, getByID, allPets, registerPet}
+module.exports = { updatePet, getByID, allPets, registerPet, getByName}

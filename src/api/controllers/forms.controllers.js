@@ -12,6 +12,20 @@ const applyForm = async (req, res) => {
     }
 }
 
+const deleteForm = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleteForm = await Form.findByIdAndDelete(id);
+        if (!deleteForm) {
+            return res.status(404).json({ message: "Form does not exist" })
+        }
+        return res.status(200).json(deleteForm)
+
+    } catch (error) {
+
+    }
+}
+
 const allForms = async (req, res) => {
     try {
         const allForms = await Form.find();
@@ -52,4 +66,4 @@ const updateForm = async (req, res) => {
 
 };
 
-module.exports = { updateForm, getFormByID, allForms, applyForm};
+module.exports = { updateForm, getFormByID, allForms, applyForm, deleteForm};
