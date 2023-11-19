@@ -72,6 +72,7 @@ const getByUsername = async (req, res) => {
         const userForm = await Form.find({username: username});
         return res.status(200).json(userForm);
     } catch (error) {
+        console.error(error);
         return res.status(500).json(error);
     }
 };
