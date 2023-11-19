@@ -66,4 +66,14 @@ const updateForm = async (req, res) => {
 
 };
 
-module.exports = { updateForm, getFormByID, allForms, applyForm, deleteForm};
+const getByUsername = async (req, res) => {
+    try {
+        const { username } = req.params
+        const userForm = await Form.find({username: username});
+        return res.status(200).json(userForm);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+};
+
+module.exports = { updateForm, getFormByID, allForms, applyForm, deleteForm, getByUsername};
