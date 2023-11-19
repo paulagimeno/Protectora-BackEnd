@@ -12,19 +12,7 @@ const applyForm = async (req, res) => {
     }
 }
 
-const deleteForm = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const deleteForm = await Form.findByIdAndDelete(id);
-        if (!deleteForm) {
-            return res.status(404).json({ message: "Form does not exist" })
-        }
-        return res.status(200).json(deleteForm)
 
-    } catch (error) {
-
-    }
-}
 
 const allForms = async (req, res) => {
     try {
@@ -41,6 +29,17 @@ const getFormByID = async (req, res) => {
         const { id } = req.params
         const idForm = await Form.findById(id);
         return res.status(200).json(idForm);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json(error);
+    }
+};
+
+const getByUsername = async (req, res) => {
+    try {
+        const { username } = req.params
+        const userForm = await Form.find({username: username});
+        return res.status(200).json(userForm);
     } catch (error) {
         console.error(error);
         return res.status(500).json(error);
@@ -66,15 +65,20 @@ const updateForm = async (req, res) => {
 
 };
 
-const getByUsername = async (req, res) => {
+const deleteForm = async (req, res) => {
     try {
-        const { username } = req.params
-        const userForm = await Form.find({username: username});
-        return res.status(200).json(userForm);
+        const { id } = req.params;
+        const deleteForm = await Form.findByIdAndDelete(id);
+        if (!deleteForm) {
+            return res.status(404).json({ message: "Form does not exist" })
+        }
+        return res.status(200).json(deleteForm)
+
     } catch (error) {
-        console.error(error);
-        return res.status(500).json(error);
+
     }
-};
+}
+
+
 
 module.exports = { updateForm, getFormByID, allForms, applyForm, deleteForm, getByUsername};
