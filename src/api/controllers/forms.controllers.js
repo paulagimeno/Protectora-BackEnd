@@ -12,23 +12,22 @@ const applyForm = async (req, res) => {
     }
 }
 
-
-
-const allForms = async (req, res) => {
+const getByUsername = async (req, res) => {
     try {
-        const allForms = await Form.find();
-        return res.status(200).json(allForms);
+        console.log('Params:', req.params);
+        const { username } = req.params
+        const usernameForm = await Form.find({username: username});
+        return res.status(200).json(usernameForm);
     } catch (error) {
         console.error(error);
         return res.status(500).json(error);
     }
 };
 
-const getByUsername = async (req, res) => {
+const allForms = async (req, res) => {
     try {
-        const { username } = req.params
-        const usernameForm = await Form.find({username: username});
-        return res.status(200).json(usernameForm);
+        const allForms = await Form.find();
+        return res.status(200).json(allForms);
     } catch (error) {
         console.error(error);
         return res.status(500).json(error);
