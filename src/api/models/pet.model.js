@@ -26,7 +26,8 @@ const petSchema = new Schema({
     adoptiveParent: {type: String},
     image: {type: String},
     protectora: {type: String},
-    weight: {type: Number}
+    weight: {type: Number},
+    favorite: {type: [String]}, 
 },{
     
     collection: "pet"
