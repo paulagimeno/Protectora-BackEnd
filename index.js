@@ -4,6 +4,7 @@ const routeUsers = require('./src/api/routes/users.routes');
 const routePets = require('./src/api/routes/pets.routes');
 const routeProtectoras = require('./src/api/routes/protectoras.routes');
 const routeForms = require('./src/api/routes/forms.routes');
+const routeDirecciones = require('./src/api/routes/direcciones.routes');
 const env = require('dotenv');
 env.config();
 const cors = require('cors');
@@ -25,6 +26,7 @@ app.use('/users', routeUsers);
 app.use('/pets', routePets);
 app.use('/protectoras', routeProtectoras);
 app.use('/forms', routeForms);
+app.use('/direcciones', routeDirecciones)
 
 const PORT = 5055;
 app.listen(PORT, () => {
